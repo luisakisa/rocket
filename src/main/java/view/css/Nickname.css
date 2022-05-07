@@ -1,0 +1,6 @@
+#Nickname {
+    -fx-background-radius: 35;
+    -fx-background-color: #4c447c;
+    -fx-text-fill: rgba(192, 192, 192, 0.2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 10, 10);
+}

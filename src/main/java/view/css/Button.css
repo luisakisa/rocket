@@ -1,0 +1,14 @@
+#PlayButton {
+    -fx-padding: 8 15 15 15;
+    -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
+    -fx-background-radius: 35;
+    -fx-background-color: 
+        linear-gradient(from 0% 93% to 0% 100%, #fc6d6d 0%, #ef1313 100%),
+        #e42e2e,
+        #e42e2e,
+        radial-gradient(center 50% 50%, radius 100%, #dc4545, #fa5050);
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+}
+

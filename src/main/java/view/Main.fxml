@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.GameController">
+   <Pane fx:id="mainRoot">
+      <children>
+         <Pane layoutX="14.0" layoutY="36.0" prefHeight="769.0" prefWidth="1367.0" style="-fx-background-color: #161c22;">
+            <children>
+               <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="578.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" rotate="143.5">
+                  <image>
+                     <Image url="@../../../../images/5.png" />
+                  </image>
+               </ImageView>
+               <Button id="PlayButton" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="59.0" prefWidth="170.0" stylesheets="@css/Button.css" text="Play" textFill="WHITE">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Button>
+               <TextField id="Nickname" fx:id="nickname" layoutX="516.0" layoutY="413.0" prefHeight="25.0" prefWidth="339.0" stylesheets="@css/Nickname.css" text="Nickname">
+                  <font>
+                     <Font size="30.0" />
+                  </font>
+               </TextField>
+               <TextFlow layoutX="372.0" layoutY="93.0" prefHeight="150.0" prefWidth="626.0" stylesheets="@css/Nickname.css">
+                  <children>
+                     <Text fill="#f25555" strokeType="OUTSIDE" strokeWidth="0.0" text="Space" wrappingWidth="406.890625">
+                        <font>
+                           <Font name="Bauhaus 93" size="96.0" />
+                        </font>
+                     </Text>
+                     <Text fill="#5c48c1" strokeType="OUTSIDE" strokeWidth="0.0" text="Invaders">
+                        <font>
+                           <Font name="Berlin Sans FB" size="96.0" />
+                        </font>
+                     </Text>
+                  </children>
+               </TextFlow>
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Pane>
+      </children>
+   </Pane>
+</Scene>

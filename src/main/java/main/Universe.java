@@ -1,5 +1,6 @@
 package main;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 import java.util.Random;
@@ -14,7 +15,7 @@ public class Universe {
     private double opacity;
     private static final int WIDTH = 800;
 
-    public Universe(Random RAND,) {
+    public Universe(Random RAND) {
         posX = RAND.nextInt(WIDTH);
         posY = 0;
         w = RAND.nextInt(5) + 1;
@@ -27,7 +28,7 @@ public class Universe {
         if(opacity > 0.5) opacity = 0.5;
     }
 
-    public void draw() {
+    public void draw(GraphicsContext gc) {
         if(opacity > 0.8) opacity-=0.01;
         if(opacity < 0.1) opacity+=0.01;
         gc.setFill(Color.rgb(r, g, b, opacity));

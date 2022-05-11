@@ -30,14 +30,12 @@ public class GameController {
     private GraphicsContext gc;
     private double mouseX;
     private Rocket player;
-    List<SpaceInvaders.Shot> shots;
+    List<Shot> shots;
     final int MAX_BOMBS = 10,  MAX_SHOTS = MAX_BOMBS * 2;
-    List<SpaceInvaders.Universe> univ;
-    List<SpaceInvaders.Bomb> Bombs;
-    private double mouseX;
+    List<Universe> univ;
+    List<Bomb> Bombs;
     private int score;
     private static final Random RAND = new Random();
-    private static final int WIDTH = 800;
 
     private static final int PLAYER_SIZE = 60;//размер ракет
     static final Image PLAYER_IMG = new Image("D:\\programming\\rocket\\images\\player.png");
@@ -86,7 +84,7 @@ public class GameController {
         IntStream.range(0, MAX_BOMBS).mapToObj(i -> this.newBomb()).forEach(Bombs::add);
     }
     Bomb newBomb() {
-        return new Bomb(50 + RAND.nextInt(WIDTH - 100), 0, PLAYER_SIZE, BOMBS_IMG[RAND.nextInt(BOMBS_IMG.length)], gc);
+        return new Bomb(50 + RAND.nextInt(WIDTH - 100), 0, PLAYER_SIZE, BOMBS_IMG[RAND.nextInt(BOMBS_IMG.length)], gc,score);
     }
     private void run(GraphicsContext gc) {
         gc.setFill(Color.grayRgb(20));
@@ -103,7 +101,7 @@ public class GameController {
             gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT /2.5);
             //	return;
         }
-        univ.forEach(Universe::draw);
+        univ.forEach(universe -> universe.draw(gc));
 
         player.update();
         player.draw();
@@ -117,13 +115,13 @@ public class GameController {
 
 
         for (int i = shots.size() - 1; i >=0 ; i--) {
-            SpaceInvaders.Shot shot = shots.get(i);
+            Shot shot = shots.get(i);
             if(shot.posY < 0 || shot.toRemove)  {
                 shots.remove(i);
                 continue;
             }
             shot.update();
-            shot.draw();
+            shot.draw(gc, score);
             for (Bomb bomb : Bombs) {
                 if(shot.colide(bomb) && !bomb.exploding) {
                     score++;
@@ -141,7 +139,7 @@ public class GameController {
 
         gameOver = player.destroyed;
         if(RAND.nextInt(10) > 2) {
-            univ.add(new Universe());
+            univ.add(new Universe(RAND));
         }
         for (int i = 0; i < univ.size(); i++) {
             if(univ.get(i).posY > HEIGHT)

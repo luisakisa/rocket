@@ -12,6 +12,11 @@
       <children>
          <Pane layoutX="14.0" layoutY="36.0" prefHeight="769.0" prefWidth="1367.0" style="-fx-background-color: #161c22;">
             <children>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="415.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" rotate="-99.0">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
                <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="578.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" rotate="143.5">
                   <image>
                      <Image url="@../../../../images/5.png" />
@@ -41,6 +46,36 @@
                      </Text>
                   </children>
                </TextFlow>
+               <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="751.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="900.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="362.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="484.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="46.0" fitWidth="43.0" layoutX="391.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="855.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../../../images/star.png" />
+                  </image>
+               </ImageView>
             </children>
             <opaqueInsets>
                <Insets />

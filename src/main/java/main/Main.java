@@ -10,7 +10,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = FXMLLoader.load(getClass().getResource("./view/Main.fxml"));
-        stage.setTitle("snake.io");
+        stage.setTitle("SpaceInvaders");
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();

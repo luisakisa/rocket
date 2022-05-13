@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = FXMLLoader.load(getClass().getResource("./view/Main.fxml"));
+
+        Scene scene = new FXMLLoader(Main.class.getResource("/Main.fxml")).load();
         stage.setTitle("SpaceInvaders");
         stage.setScene(scene);
         stage.setFullScreen(true);

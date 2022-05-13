@@ -2,6 +2,8 @@ package main;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import main.Rocket;
+
 public class Bomb extends Rocket {
 
     private static final int HEIGHT = 600;

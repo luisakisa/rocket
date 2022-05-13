@@ -38,21 +38,21 @@ public class GameController {
     private static final Random RAND = new Random();
 
     private static final int PLAYER_SIZE = 60;//размер ракет
-    static final Image PLAYER_IMG = new Image("D:\\programming\\rocket\\images\\player.png");
+    static final Image PLAYER_IMG = new Image("file:view/images/player.png");
 
 
 
     static final Image[] BOMBS_IMG = {
-            new Image("D:\\programming\\rocket\\images\\1.png"),
-            new Image("D:\\programming\\rocket\\images\\2.png"),
-            new Image("D:\\programming\\rocket\\images\\3.png"),
-            new Image("D:\\programming\\rocket\\images\\4.png"),
-            new Image("D:\\programming\\rocket\\images\\5.png"),
-            new Image("D:\\programming\\rocket\\images\\6.png"),
-            new Image("D:\\programming\\rocket\\images\\7.png"),
-            new Image("D:\\programming\\rocket\\images\\8.png"),
-            new Image("D:\\programming\\rocket\\images\\9.png"),
-            new Image("D:\\programming\\rocket\\images\\10.png"),
+            new Image("file:view/images/1.png"),
+            new Image("file:view/images/2.png"),
+            new Image("file:view/images/3.png"),
+            new Image("file:view/images/4.png"),
+            new Image("file:view/images/5.png"),
+            new Image("file:view/images/6.png"),
+            new Image("file:view/images/7.png"),
+            new Image("file:view/images/8.png"),
+            new Image("file:view/images/9.png"),
+            new Image("file:view/images/10.png"),
     };
 
     @FXML

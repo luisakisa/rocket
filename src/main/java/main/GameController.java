@@ -4,13 +4,20 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -21,6 +28,9 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
+    public Scene mainScene;
+    public Pane mainRoot;
+    public TextField nickname;
     boolean gameOver = false;
 
     @FXML
@@ -56,9 +66,20 @@ public class GameController {
     };
 
     @FXML
-    public void initialize() {
+    public void initialize(InputEvent a) {
+        final Node source = (Node) a.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
+
+        Group root = new Group();
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        stage.setScene(scene);
+        stage.setFullScreen(false);
+        stage.show();
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> run(gc)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

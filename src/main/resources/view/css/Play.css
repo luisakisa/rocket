@@ -1,0 +1,9 @@
+#PlayButton {
+    -fx-padding: 8 15 15 15;
+    -fx-background-radius: 35;
+    -fx-background-color:  #f25555;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 30px;
+}
+

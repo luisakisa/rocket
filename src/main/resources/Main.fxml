@@ -19,10 +19,10 @@
                </ImageView>
                <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="578.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" rotate="143.5">
                   <image>
-                     <Image url="@view/images/5.png" />
+                     <Image url="@view/images/10.png" />
                   </image>
                </ImageView>
-               <Button id="PlayButton" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="59.0" prefWidth="170.0" stylesheets="@view/css/Button.css" text="Play" textFill="WHITE">
+               <Button id="PlayButton" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="59.0" prefWidth="170.0" stylesheets="@view/css/Play.css" text="Play" textFill="WHITE">
                   <font>
                      <Font size="48.0" />
                   </font>

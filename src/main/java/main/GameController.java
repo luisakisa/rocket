@@ -4,13 +4,18 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.InputEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -37,28 +42,39 @@ public class GameController {
     private int score;
     private static final Random RAND = new Random();
 
-    private static final int PLAYER_SIZE = 60;//размер ракет
-    static final Image PLAYER_IMG = new Image("file:view/images/player.png");
+    private static final int PLAYER_SIZE = 70;//размер ракет
+    static final Image PLAYER_IMG = new Image("D:/programming/rocket/src/main/resources/view/images/player.png");
 
 
 
     static final Image[] BOMBS_IMG = {
-            new Image("file:view/images/1.png"),
-            new Image("file:view/images/2.png"),
-            new Image("file:view/images/3.png"),
-            new Image("file:view/images/4.png"),
-            new Image("file:view/images/5.png"),
-            new Image("file:view/images/6.png"),
-            new Image("file:view/images/7.png"),
-            new Image("file:view/images/8.png"),
-            new Image("file:view/images/9.png"),
-            new Image("file:view/images/10.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/1.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/2.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/3.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/4.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/5.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/6.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/7.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/8.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/9.png"),
+            new Image("D:/programming/rocket/src/main/resources/view/images/10.png"),
     };
 
     @FXML
-    public void initialize() {
+    public void initialize(InputEvent a) {
+        final Node source = (Node) a.getSource();
+        final Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
+
+        Group root = new Group();
+        root.getChildren().add(canvas);
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
+        stage.setScene(scene);
+        stage.setFullScreen(false);
+        stage.show();
+
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> run(gc)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -79,7 +95,7 @@ public class GameController {
         univ = new ArrayList<>();
         shots = new ArrayList<>();
         Bombs = new ArrayList<>();
-        player = new Rocket(WIDTH / 2, HEIGHT - PLAYER_SIZE, PLAYER_SIZE, PLAYER_IMG, gc);
+        player = new Rocket(WIDTH / 2, HEIGHT - 110, PLAYER_SIZE, PLAYER_IMG, gc);
         score = 0;
         IntStream.range(0, MAX_BOMBS).mapToObj(i -> this.newBomb()).forEach(Bombs::add);
     }

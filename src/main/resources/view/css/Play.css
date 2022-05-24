@@ -1,7 +1,7 @@
 #PlayButton {
     -fx-background-radius: 35;
     -fx-background-color: #fa5050;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 10, 10);
     -fx-text-fill: #ffffff;
     -fx-font-size: 30px;
 }

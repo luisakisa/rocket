@@ -13,7 +13,9 @@ public class Main extends Application {
         Scene scene = new FXMLLoader(Main.class.getResource("/Main.fxml")).load();
         stage.setTitle("SpaceInvaders");
         stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setHeight(600);
+        stage.setWidth(800);
+        stage.setFullScreen(false);
         stage.show();
     }
     public static void main(String[] args) {

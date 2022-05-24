@@ -9,67 +9,78 @@
 
 <Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.GameController">
    <Pane fx:id="mainRoot">
-      <Pane layoutX="14.0" layoutY="36.0" prefHeight="769.0" prefWidth="1367.0" style="-fx-background-color: #161c22;">
-         <opaqueInsets>
-            <Insets/>
-         </opaqueInsets>
-         <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="415.0" layoutY="256.0" pickOnBounds="true"
-                    preserveRatio="true" rotate="-99.0">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="578.0" layoutY="218.0" pickOnBounds="true"
-                    preserveRatio="true" rotate="143.5">
-            <Image url="@view/images/5.png"/>
-         </ImageView>
-         <Button id="PlayButton" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#initialize"
-                 prefHeight="59.0" prefWidth="170.0" stylesheets="@view/css/Button.css" text="Play" textFill="WHITE">
-            <font>
-               <Font size="48.0"/>
-            </font>
-         </Button>
-         <TextField id="Nickname" fx:id="nickname" layoutX="516.0" layoutY="413.0" prefHeight="25.0"
-                    prefWidth="339.0" stylesheets="@view/css/Nickname.css" text="Nickname">
-            <font>
-               <Font size="30.0"/>
-            </font>
-         </TextField>
-         <TextFlow layoutX="372.0" layoutY="93.0" prefHeight="150.0" prefWidth="626.0"
-                   stylesheets="@view/css/Nickname.css">
-            <Text fill="#f25555" strokeType="OUTSIDE" strokeWidth="0.0" text="Space" wrappingWidth="406.890625">
-               <font>
-                  <Font name="Bauhaus 93" size="96.0"/>
-               </font>
-            </Text>
-            <Text fill="#5c48c1" strokeType="OUTSIDE" strokeWidth="0.0" text="Invaders">
-               <font>
-                  <Font name="Berlin Sans FB" size="96.0"/>
-               </font>
-            </Text>
-         </TextFlow>
-         <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="751.0" layoutY="363.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="900.0" layoutY="511.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="362.0" layoutY="599.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="484.0" layoutY="497.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="46.0" fitWidth="43.0" layoutX="391.0" layoutY="389.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-         <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="855.0" layoutY="267.0" pickOnBounds="true"
-                    preserveRatio="true">
-            <Image url="@view/images/star.png"/>
-         </ImageView>
-      </Pane>
+      <children>
+         <Pane layoutX="14.0" layoutY="36.0" prefHeight="769.0" prefWidth="1367.0" style="-fx-background-color: #161c22;">
+            <children>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="415.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true" rotate="-99.0">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="578.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" rotate="143.5">
+                  <image>
+                     <Image url="@view/images/5.png" />
+                  </image>
+               </ImageView>
+               <Button id="PlayButton" layoutX="599.0" layoutY="518.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="59.0" prefWidth="170.0" stylesheets="@view/css/Button.css" text="Play" textFill="WHITE">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Button>
+               <TextField id="Nickname" fx:id="nickname" layoutX="516.0" layoutY="413.0" prefHeight="25.0" prefWidth="339.0" stylesheets="@view/css/Nickname.css" text="Nickname">
+                  <font>
+                     <Font size="30.0" />
+                  </font>
+               </TextField>
+               <TextFlow layoutX="372.0" layoutY="93.0" prefHeight="150.0" prefWidth="626.0" stylesheets="@view/css/Nickname.css">
+                  <children>
+                     <Text fill="#f25555" strokeType="OUTSIDE" strokeWidth="0.0" text="Space" wrappingWidth="406.890625">
+                        <font>
+                           <Font name="Bauhaus 93" size="96.0" />
+                        </font>
+                     </Text>
+                     <Text fill="#5c48c1" strokeType="OUTSIDE" strokeWidth="0.0" text="Invaders">
+                        <font>
+                           <Font name="Berlin Sans FB" size="96.0" />
+                        </font>
+                     </Text>
+                  </children>
+               </TextFlow>
+               <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="751.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="900.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="362.0" layoutY="599.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="484.0" layoutY="497.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="46.0" fitWidth="43.0" layoutX="391.0" layoutY="389.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="855.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Pane>
+      </children>
    </Pane>
 </Scene>

@@ -1,16 +1,5 @@
 package main;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.input.InputEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -32,9 +21,6 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    public Scene mainScene;
-    public Pane mainRoot;
-    public TextField nickname;
     boolean gameOver = false;
 
     @FXML
@@ -52,38 +38,27 @@ public class GameController {
     private static final Random RAND = new Random();
 
     private static final int PLAYER_SIZE = 60;//размер ракет
-    static final Image PLAYER_IMG = new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\player.png");
+    static final Image PLAYER_IMG = new Image("file:view/images/player.png");
 
 
 
     static final Image[] BOMBS_IMG = {
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\1.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\2.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\3.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\4.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\5.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\6.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\7.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\8.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\9.png"),
-            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\10.png"),
+            new Image("file:view/images/1.png"),
+            new Image("file:view/images/2.png"),
+            new Image("file:view/images/3.png"),
+            new Image("file:view/images/4.png"),
+            new Image("file:view/images/5.png"),
+            new Image("file:view/images/6.png"),
+            new Image("file:view/images/7.png"),
+            new Image("file:view/images/8.png"),
+            new Image("file:view/images/9.png"),
+            new Image("file:view/images/10.png"),
     };
 
     @FXML
-    public void initialize(InputEvent a) {
-        final Node source = (Node) a.getSource();
-        final Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    public void initialize() {
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
-
-        Group root = new Group();
-        root.getChildren().add(canvas);
-        Scene scene = new Scene(root, WIDTH, HEIGHT);
-        stage.setScene(scene);
-        stage.setFullScreen(false);
-        stage.show();
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> run(gc)));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();

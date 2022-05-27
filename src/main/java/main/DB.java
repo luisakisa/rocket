@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DB {
 
-    // Метод для подключения к БД с использованием значений выше
+    // Метод для подключения к БД
     private Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
@@ -22,29 +22,41 @@ public class DB {
        this.nick = nick;
 
     }
-
-    public void insertScore(int score) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO Space " + "(Nickname, Score) " +"VALUES" + "('"  + nick + "'," + score + ")";
+    public void deleteScore() throws SQLException, ClassNotFoundException {
+        String sql =  "delete from space where nickname = '" + nick +"'";
         Statement statement = getDbConnection().createStatement();
         statement.executeUpdate(sql);
 
     }
-    public void setPrevScore(){
-        String sql = "select score from Space where nickname="+nick;
-
-    }
-    // Метод для получения всех заданий из таблицы
-    public ArrayList<String> getTasks() throws SQLException, ClassNotFoundException {
-        String sql = "SELECT * FROM todo ORDER BY id";
-
+    String nc = "name";
+    public void insertScore(int score) throws SQLException, ClassNotFoundException {
         Statement statement = getDbConnection().createStatement();
-        ResultSet res = statement.executeQuery(sql);
+        String sql = "select nickname from space where nickname = '" + nick + "'";
+        statement.executeUpdate(sql);
+        ResultSet res = statement.getResultSet();
+        while (res.next()) {
+            nc = res.getString("Nickname");
+        }
+        if (!(nc.equals(nick))){
+            sql = "INSERT INTO Space (Nickname, Score) VALUES('"  + nick + "'," + score + ")";
+            statement.executeUpdate(sql);
+        }
+        else if (getPrevScore() < score){
+            sql = "UPDATE space  SET score = " + score + "WHERE nickname = '"+nick+ "'";
+            statement.executeUpdate(sql);
+        }
+    }
+    int sc;
+    public int getPrevScore() throws SQLException, ClassNotFoundException {
 
-        ArrayList<String> tasks = new ArrayList<>();
-        while(res.next())
-            tasks.add(res.getString("task"));
-
-        return tasks;
+        String sql = "select score from Space where nickname='" + nick + "'";
+        Statement statement = getDbConnection().createStatement();
+        statement.executeUpdate(sql);
+        ResultSet res = statement.getResultSet();
+        while (res.next()) {
+            sc = res.getInt("Score");
+        }
+        return sc;
     }
 
 }

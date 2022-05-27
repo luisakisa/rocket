@@ -43,7 +43,7 @@
                            <Font name="Bauhaus 93" size="96.0" />
                         </font>
                         <effect>
-                           <DropShadow height="71.05" radius="22.5125" spread="0.61" />
+                           <DropShadow height="90.12" radius="85.78" spread="0.49" width="255.0" />
                         </effect>
                      </Text>
                      <Text fill="#5c48c1" strokeType="OUTSIDE" strokeWidth="0.0" text="Invaders">
@@ -51,7 +51,7 @@
                            <Font name="Berlin Sans FB" size="96.0" />
                         </font>
                         <effect>
-                           <DropShadow height="71.05" radius="22.5125" spread="0.61" />
+                           <DropShadow height="172.56" radius="106.39" spread="0.67" width="255.0" />
                         </effect>
                      </Text>
                   </children>

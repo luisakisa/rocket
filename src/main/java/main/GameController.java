@@ -9,15 +9,16 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.InputEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -27,9 +28,6 @@ public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     boolean gameOver = false;
-
-    @FXML
-    private AnchorPane gameRoot;
 
     @FXML
     private GraphicsContext gc;
@@ -59,9 +57,13 @@ public class GameController {
             new Image("D:/programming/rocket/src/main/resources/view/images/9.png"),
             new Image("D:/programming/rocket/src/main/resources/view/images/10.png"),
     };
+    public TextField nickname;
 
     @FXML
     public void initialize(InputEvent a) {
+        DB db = new DB();
+        db.insertNick(nickname.getText());
+
         final Node source = (Node) a.getSource();
         final Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
@@ -83,6 +85,13 @@ public class GameController {
         canvas.setOnMouseClicked(e -> {
             if(shots.size() < MAX_SHOTS) shots.add(player.shoot());
             if(gameOver) {
+                try {
+                    setScore(db);
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                } catch (ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
                 gameOver = false;
                 setup();
             }
@@ -90,7 +99,9 @@ public class GameController {
         setup();
 
     }
-
+    public void setScore(DB db) throws SQLException, ClassNotFoundException {
+        db.insertScore(score);
+    }
     private void setup() {
         univ = new ArrayList<>();
         shots = new ArrayList<>();

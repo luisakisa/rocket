@@ -4,6 +4,6 @@ module main {
     requires java.sql;
 
 
-    opens main to javafx.fxml;
-    exports main;
+    opens client to javafx.fxml;
+    exports client;
 }

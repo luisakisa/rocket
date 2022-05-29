@@ -1,7 +1,6 @@
-package main;
+package client;
 
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DB {
 
@@ -56,7 +55,18 @@ public class DB {
         while (res.next()) {
             sc = res.getInt("Score");
         }
+
         return sc;
     }
+//    public void getAllScore() throws SQLException, ClassNotFoundException {
+//        String sql = "select * from Space";
+//        Statement statement = getDbConnection().createStatement();
+//        statement.executeUpdate(sql);
+//        ResultSet res = statement.getResultSet();
+//        ScoreController sc = new ScoreController();
+//        while (res.next()) {
+//           sc.res.getInt("Score");
+//        }
+//    }
 
 }

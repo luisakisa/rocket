@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.GameController">
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.GameController">
    <Pane fx:id="mainRoot">
       <children>
          <Pane prefHeight="600" prefWidth="800" style="-fx-background-color: #161c22;">

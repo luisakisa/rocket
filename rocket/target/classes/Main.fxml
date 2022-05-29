@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Scene fx:id="mainScene" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.GameController">
+   <Pane fx:id="mainRoot">
+      <children>
+         <Pane prefHeight="600" prefWidth="800" style="-fx-background-color: #161c22;">
+            <children>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="135.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true" rotate="-99.0">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="150.0" fitWidth="152.0" layoutX="298.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true" rotate="143.5">
+                  <image>
+                     <Image url="@view/images/10.png" />
+                  </image>
+                  <effect>
+                     <DropShadow height="255.0" radius="127.0" spread="0.42" width="255.0" />
+                  </effect>
+               </ImageView>
+               <Button id="PlayButton" layoutX="319.0" layoutY="439.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="59.0" prefWidth="170.0" stylesheets="@view/css/Play.css" text="Play" textFill="WHITE">
+                  <font>
+                     <Font size="48.0" />
+                  </font>
+               </Button>
+               <TextField id="Nickname" fx:id="nickname" layoutX="236.0" layoutY="334.0" prefHeight="25.0" prefWidth="339.0" stylesheets="@view/css/Nickname.css" text="Nickname">
+                  <font>
+                     <Font size="30.0" />
+                  </font>
+               </TextField>
+               <TextFlow layoutX="92.0" layoutY="14.0" prefHeight="150.0" prefWidth="626.0" stylesheets="@view/css/Nickname.css">
+                  <children>
+                     <Text fill="#f25555" strokeType="OUTSIDE" strokeWidth="0.0" text="Space" wrappingWidth="406.890625">
+                        <font>
+                           <Font name="Bauhaus 93" size="96.0" />
+                        </font>
+                        <effect>
+                           <DropShadow height="90.12" radius="85.78" spread="0.49" width="255.0" />
+                        </effect>
+                     </Text>
+                     <Text fill="#5c48c1" strokeType="OUTSIDE" strokeWidth="0.0" text="Invaders">
+                        <font>
+                           <Font name="Berlin Sans FB" size="96.0" />
+                        </font>
+                        <effect>
+                           <DropShadow height="172.56" radius="106.39" spread="0.67" width="255.0" />
+                        </effect>
+                     </Text>
+                  </children>
+               </TextFlow>
+               <ImageView fitHeight="36.0" fitWidth="35.0" layoutX="471.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="75.0" fitWidth="95.0" layoutX="620.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="82.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="55.0" fitWidth="43.0" layoutX="204.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="46.0" fitWidth="43.0" layoutX="62.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+               <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="575.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@view/images/star.png" />
+                  </image>
+               </ImageView>
+            </children>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+         </Pane>
+      </children>
+   </Pane>
+</Scene>

@@ -2,6 +2,7 @@ package client;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -28,7 +29,10 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-
+    public TableColumn<String, String> Score;
+    public TableColumn<String, String> Nick;
+    public Button PlayAgainButton;
+    public Button ExitGameButton;
     boolean gameOver = false;
 
     @FXML
@@ -41,23 +45,24 @@ public class GameController {
     List<Bomb> Bombs;
     private int score;
     private static final Random RAND = new Random();
+    boolean checkWindow = true;
 
     private static final int PLAYER_SIZE = 70;//размер ракет
-    static final Image PLAYER_IMG = new Image("D:/programming/rocket/src/main/resources/view/images/player.png");
+    static final Image PLAYER_IMG = new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\player.png");
 
 
 
     static final Image[] BOMBS_IMG = {
-            new Image("D:/programming/rocket/src/main/resources/view/images/1.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/2.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/3.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/4.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/5.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/6.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/7.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/8.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/9.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/10.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\1.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\2.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\3.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\4.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\5.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\6.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\7.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\8.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\9.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\10.png"),
     };
     public TextField nickname;
 
@@ -81,6 +86,9 @@ public class GameController {
 
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             try {
+                if(Exit){
+                    stage.close();
+                }
                 run(gc);
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -91,17 +99,8 @@ public class GameController {
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
         canvas.setOnMouseClicked(e -> {
+
             if(shots.size() < MAX_SHOTS) shots.add(player.shoot());
-            if(gameOver) {
-                new NewThread().run();
-                try {
-                    setScore(db);
-                } catch (SQLException | ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                gameOver = false;
-                setup();
-            }
         });
         setup();
 
@@ -116,6 +115,7 @@ public class GameController {
         player = new Rocket(WIDTH / 2, HEIGHT - 110, PLAYER_SIZE, PLAYER_IMG, gc);
         score = 0;
         IntStream.range(0, MAX_BOMBS).mapToObj(i -> this.newBomb()).forEach(Bombs::add);
+        checkWindow = true;
     }
     Bomb newBomb() {
         return new Bomb(50 + RAND.nextInt(WIDTH - 100), 0, PLAYER_SIZE, BOMBS_IMG[RAND.nextInt(BOMBS_IMG.length)], gc,score);
@@ -126,14 +126,36 @@ public class GameController {
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setFont(Font.font(20));
         gc.setFill(Color.WHITE);
-        gc.fillText("Score: " + score, 60,  20);
+        gc.fillText("Score: " + score, 60, 20);
 
 
-        if(gameOver) {
-            gc.setFont(Font.font(35));
-            gc.setFill(Color.YELLOW);
-            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT /2.5);
-
+        if (gameOver) {
+            DB db = new DB();
+            db.insertNick(nickname.getText());
+            if(checkWindow) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Score.fxml"));
+                Scene sc = null;
+                try {
+                    sc = new Scene(fxmlLoader.load(), 600, 400);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                Stage st = new Stage();
+                st.setScene(sc);
+                st.show();
+                checkWindow = false;
+            }
+            try {
+                setScore(db);
+            } catch (SQLException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            if(again){
+                setup();
+            }
+            again = false;
+            gameOver = false;
         }
         univ.forEach(universe -> universe.draw(gc));
 
@@ -142,22 +164,22 @@ public class GameController {
         player.posX = (int) mouseX;
 
         Bombs.stream().peek(Rocket::update).peek(Rocket::draw).forEach(e -> {
-            if(player.colide(e) && !player.exploding) {
+            if (player.colide(e) && !player.exploding) {
                 player.explode();
             }
         });
 
 
-        for (int i = shots.size() - 1; i >=0 ; i--) {
+        for (int i = shots.size() - 1; i >= 0; i--) {
             Shot shot = shots.get(i);
-            if(shot.posY < 0 || shot.toRemove)  {
+            if (shot.posY < 0 || shot.toRemove) {
                 shots.remove(i);
                 continue;
             }
             shot.update();
             shot.draw(gc, score);
             for (Bomb bomb : Bombs) {
-                if(shot.colide(bomb) && !bomb.exploding) {
+                if (shot.colide(bomb) && !bomb.exploding) {
                     score++;
                     bomb.explode();
                     shot.toRemove = true;
@@ -165,19 +187,35 @@ public class GameController {
             }
         }
 
-        for (int i = Bombs.size() - 1; i >= 0; i--){
-            if(Bombs.get(i).destroyed)  {
+        for (int i = Bombs.size() - 1; i >= 0; i--) {
+            if (Bombs.get(i).destroyed) {
                 Bombs.set(i, newBomb());
             }
         }
 
         gameOver = player.destroyed;
-        if(RAND.nextInt(10) > 2) {
+        if (RAND.nextInt(10) > 2) {
             univ.add(new Universe(RAND));
         }
         for (int i = 0; i < univ.size(); i++) {
-            if(univ.get(i).posY > HEIGHT)
+            if (univ.get(i).posY > HEIGHT)
                 univ.remove(i);
         }
+    }
+
+    @FXML
+    static boolean again = false;
+    public void PlayAgain(ActionEvent a) {
+        final Node source = (Node) a.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        again = true;
+    }
+    static boolean Exit = false;
+    public void ExitGame(ActionEvent actionEvent) {
+        final Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+        Exit = true;
     }
 }

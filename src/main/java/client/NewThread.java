@@ -14,10 +14,11 @@ public class NewThread extends Thread {
         fxmlLoader.setLocation(getClass().getResource("/Score.fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 600, 400);
+            scene = new Scene(fxmlLoader.load(), 600, 600);
         } catch (IOException e) {
             e.printStackTrace();
-        } Stage stage = new Stage();
+        }
+        Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
     }

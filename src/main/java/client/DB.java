@@ -8,7 +8,7 @@ import java.sql.*;
 public class DB {
 
     // Метод для подключения к БД
-    private static Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
         String login = "system";
@@ -62,20 +62,7 @@ public class DB {
         return sc;
     }
 
-    public static ObservableList<Player> getAllPlayer() throws SQLException, ClassNotFoundException {
-        Connection con = getDbConnection();
-        ObservableList<Player> list = FXCollections.observableArrayList();
-        try {
-            PreparedStatement ps = con.prepareStatement("select * from Space");
-            ResultSet res = ps.executeQuery();
-            while (res.next()){
-                list.add(new Player(res.getString("Nick"),Integer.parseInt(res.getString("Score"))));
-                System.out.println(list);
-            }
-        } catch (Exception e) {
-        }
-        return list;
-    }
+
 //    public void getAllScore() throws SQLException, ClassNotFoundException {
 //        String sql = "select * from Space";
 //        Statement statement = getDbConnection().createStatement();

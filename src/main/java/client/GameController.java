@@ -32,8 +32,6 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    public Button PlayAgainButton;
-    public Button ExitGameButton;
     DB db = new DB();
     int n =1;
 
@@ -66,21 +64,19 @@ public class GameController {
             new Image("D:/programming/rocket/src/main/resources/view/images/9.png"),
             new Image("D:/programming/rocket/src/main/resources/view/images/10.png"),
     };
-    public TextField nickname;
+    MenuController menu = new MenuController();
 
     @FXML
-    public void initialize(InputEvent a) {
+    public void StartGame() {
 
-        db.insertNick(nickname.getText());
+        db.insertNick(menu.nick);
 
-        final Node source = (Node) a.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
         Group root = new Group();
         root.getChildren().add(canvas);
+        Stage stage = new Stage();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         stage.setScene(scene);
         stage.setFullScreen(false);

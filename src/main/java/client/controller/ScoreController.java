@@ -24,12 +24,12 @@ public class ScoreController {
              fxmlLoader.setLocation(getClass().getResource("/Score.fxml"));
             // определяем таблицу и устанавливаем данные
             TableView<Player> table = new TableView<>(getAllPlayer());
+            table.setStyle("-fx-background-color: #161c22;");
             table.setPrefWidth(350);
             table.setPrefHeight(200);
 
             // столбец для вывода имени
             TableColumn<Player, String> nameColumn = new TableColumn<>("Name");
-            nameColumn.setStyle("-fx-background-color: #161c22;");
             // определяем фабрику для столбца с привязкой к свойству name
             nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
             // добавляем столбец
@@ -38,9 +38,10 @@ public class ScoreController {
             // столбец для вывода возраста
             TableColumn<Player, Integer> scoreColumn = new TableColumn<>("Score");
             scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
-            scoreColumn.setStyle("-fx-background-color: #161c22;-fx-text-fill: white;");
+            scoreColumn.setPrefWidth(175);
+            nameColumn.setPrefWidth(175);
             table.getColumns().add(scoreColumn);
-            FlowPane root = new FlowPane(350, 200, table);
+            FlowPane root = new FlowPane(60, 50, table);
             Scene scene = new Scene(root, 350, 200);
             Stage stage = new Stage();
             stage.setScene(scene);

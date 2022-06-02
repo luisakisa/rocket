@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 
 
 public class Rocket {
-    static final Image EXPLOSION_IMG = new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\explosion.png");
+    static final Image EXPLOSION_IMG = new Image(Rocket.class.getResourceAsStream("/view/images/explosion.png"));
     static final int EXPLOSION_W = 128;
     static final int EXPLOSION_ROWS = 3;
     static final int EXPLOSION_COL = 3;

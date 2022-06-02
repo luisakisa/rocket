@@ -46,19 +46,19 @@ public class GameController {
     private static final Random RAND = new Random();
 
     private static final int PLAYER_SIZE = 70;//размер ракет
-    static final Image PLAYER_IMG = new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\player.png");
+    static final Image PLAYER_IMG = new Image(GameController.class.getResourceAsStream("/view/images/player.png"));
 
     static final Image[] BOMBS_IMG = {
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\1.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\2.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\3.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\4.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\5.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\6.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\7.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\8.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\9.png"),
-            new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\10.png"),
+            new Image(GameController.class.getResourceAsStream("/view/images/1.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/2.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/3.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/4.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/5.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/6.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/7.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/8.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/9.png")),
+            new Image(GameController.class.getResourceAsStream("/view/images/10.png")),
     };
     MenuController menu = new MenuController();
 

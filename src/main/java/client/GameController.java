@@ -35,6 +35,7 @@ public class GameController {
     public Button PlayAgainButton;
     public Button ExitGameButton;
     DB db = new DB();
+    int n =1;
 
     boolean gameOver = false;
 
@@ -99,19 +100,10 @@ public class GameController {
         canvas.setOnMouseClicked(e -> {
             if (shots.size() < MAX_SHOTS) shots.add(player.shoot());
             if (gameOver) {
-                ScoreController SC = new ScoreController();
-                try {
-                    SC.secondWindow();
-                } catch (SQLException | ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                }
-                try {
-                    setScore(db);
-                } catch (SQLException | ClassNotFoundException ex) {
-                    ex.printStackTrace();
-                }
                 gameOver = false;
+                setup();
             }
+
         });
         setup();
 
@@ -192,6 +184,20 @@ public class GameController {
         for (int i = 0; i < univ.size(); i++) {
             if (univ.get(i).posY > HEIGHT)
                 univ.remove(i);
+        }
+        if (gameOver && n == 1){
+            ScoreController SC = new ScoreController();
+            n++;
+            try {
+                SC.secondWindow();
+            } catch (SQLException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
+            try {
+                setScore(db);
+            } catch (SQLException | ClassNotFoundException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 

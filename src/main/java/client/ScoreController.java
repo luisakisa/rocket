@@ -46,7 +46,7 @@ public class ScoreController {
             Scene scene = new Scene(root, 350, 200);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setTitle("TableView in JavaFX");
+            stage.setTitle("Score");
             stage.show();
 
     }

@@ -1,7 +1,7 @@
-package client.controller;
+package spaceInvaders.controller;
 
-import client.net.Net;
-import client.elements.Player;
+import spaceInvaders.net.Net;
+import spaceInvaders.elements.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +12,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.Map;

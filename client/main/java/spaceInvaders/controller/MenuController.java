@@ -1,4 +1,4 @@
-package client.controller;
+package spaceInvaders.controller;
 
 
 import javafx.fxml.FXML;

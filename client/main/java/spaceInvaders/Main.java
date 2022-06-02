@@ -1,4 +1,4 @@
-package client;
+package spaceInvaders;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

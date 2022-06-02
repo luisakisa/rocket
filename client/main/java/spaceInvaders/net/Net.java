@@ -1,4 +1,4 @@
-package client.net;
+package spaceInvaders.net;
 
 import java.io.*;
 import java.net.Socket;

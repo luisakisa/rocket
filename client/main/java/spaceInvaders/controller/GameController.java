@@ -1,10 +1,10 @@
-package client.controller;
+package spaceInvaders.controller;
 
-import client.net.Net;
-import client.elements.Bomb;
-import client.elements.Rocket;
-import client.elements.Shot;
-import client.elements.Universe;
+import spaceInvaders.net.Net;
+import spaceInvaders.elements.Bomb;
+import spaceInvaders.elements.Rocket;
+import spaceInvaders.elements.Shot;
+import spaceInvaders.elements.Universe;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;

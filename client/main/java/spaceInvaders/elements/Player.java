@@ -1,4 +1,4 @@
-package client.elements;
+package spaceInvaders.elements;
 
 
 import javafx.beans.property.IntegerProperty;

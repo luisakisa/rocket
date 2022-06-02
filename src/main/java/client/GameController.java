@@ -2,6 +2,8 @@ package client;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -9,7 +11,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.InputEvent;
 import javafx.scene.paint.Color;
@@ -28,6 +32,9 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
+    public Button PlayAgainButton;
+    public Button ExitGameButton;
+    DB db = new DB();
 
     boolean gameOver = false;
 
@@ -36,7 +43,7 @@ public class GameController {
     private double mouseX;
     private Rocket player;
     List<Shot> shots;
-    final int MAX_BOMBS = 10,  MAX_SHOTS = MAX_BOMBS * 2;
+    final int MAX_BOMBS = 10, MAX_SHOTS = MAX_BOMBS * 2;
     List<Universe> univ;
     List<Bomb> Bombs;
     private int score;
@@ -44,7 +51,6 @@ public class GameController {
 
     private static final int PLAYER_SIZE = 70;//размер ракет
     static final Image PLAYER_IMG = new Image("D:/programming/rocket/src/main/resources/view/images/player.png");
-
 
 
     static final Image[] BOMBS_IMG = {
@@ -63,7 +69,7 @@ public class GameController {
 
     @FXML
     public void initialize(InputEvent a) {
-        DB db = new DB();
+
         db.insertNick(nickname.getText());
 
         final Node source = (Node) a.getSource();
@@ -91,24 +97,30 @@ public class GameController {
         canvas.setCursor(Cursor.MOVE);
         canvas.setOnMouseMoved(e -> mouseX = e.getX());
         canvas.setOnMouseClicked(e -> {
-            if(shots.size() < MAX_SHOTS) shots.add(player.shoot());
-            if(gameOver) {
-                new NewThread().run();
+            if (shots.size() < MAX_SHOTS) shots.add(player.shoot());
+            if (gameOver) {
+                ScoreController SC = new ScoreController();
+                try {
+                    SC.secondWindow();
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
                 try {
                     setScore(db);
                 } catch (SQLException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }
                 gameOver = false;
-                setup();
             }
         });
         setup();
 
     }
+
     public void setScore(DB db) throws SQLException, ClassNotFoundException {
         db.insertScore(score);
     }
+
     private void setup() {
         univ = new ArrayList<>();
         shots = new ArrayList<>();
@@ -117,22 +129,24 @@ public class GameController {
         score = 0;
         IntStream.range(0, MAX_BOMBS).mapToObj(i -> this.newBomb()).forEach(Bombs::add);
     }
+
     Bomb newBomb() {
-        return new Bomb(50 + RAND.nextInt(WIDTH - 100), 0, PLAYER_SIZE, BOMBS_IMG[RAND.nextInt(BOMBS_IMG.length)], gc,score);
+        return new Bomb(50 + RAND.nextInt(WIDTH - 100), 0, PLAYER_SIZE, BOMBS_IMG[RAND.nextInt(BOMBS_IMG.length)], gc, score);
     }
+
     private void run(GraphicsContext gc) throws IOException {
         gc.setFill(Color.grayRgb(20));
         gc.fillRect(0, 0, WIDTH, HEIGHT);
         gc.setTextAlign(TextAlignment.CENTER);
         gc.setFont(Font.font(20));
         gc.setFill(Color.WHITE);
-        gc.fillText("Score: " + score, 60,  20);
+        gc.fillText("Score: " + score, 60, 20);
 
 
-        if(gameOver) {
+        if (gameOver) {
             gc.setFont(Font.font(35));
-            gc.setFill(Color.YELLOW);
-            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT /2.5);
+            gc.setFill(Color.WHITE);
+            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT / 2.5);
 
         }
         univ.forEach(universe -> universe.draw(gc));
@@ -142,22 +156,22 @@ public class GameController {
         player.posX = (int) mouseX;
 
         Bombs.stream().peek(Rocket::update).peek(Rocket::draw).forEach(e -> {
-            if(player.colide(e) && !player.exploding) {
+            if (player.colide(e) && !player.exploding) {
                 player.explode();
             }
         });
 
 
-        for (int i = shots.size() - 1; i >=0 ; i--) {
+        for (int i = shots.size() - 1; i >= 0; i--) {
             Shot shot = shots.get(i);
-            if(shot.posY < 0 || shot.toRemove)  {
+            if (shot.posY < 0 || shot.toRemove) {
                 shots.remove(i);
                 continue;
             }
             shot.update();
             shot.draw(gc, score);
             for (Bomb bomb : Bombs) {
-                if(shot.colide(bomb) && !bomb.exploding) {
+                if (shot.colide(bomb) && !bomb.exploding) {
                     score++;
                     bomb.explode();
                     shot.toRemove = true;
@@ -165,19 +179,23 @@ public class GameController {
             }
         }
 
-        for (int i = Bombs.size() - 1; i >= 0; i--){
-            if(Bombs.get(i).destroyed)  {
+        for (int i = Bombs.size() - 1; i >= 0; i--) {
+            if (Bombs.get(i).destroyed) {
                 Bombs.set(i, newBomb());
             }
         }
 
         gameOver = player.destroyed;
-        if(RAND.nextInt(10) > 2) {
+        if (RAND.nextInt(10) > 2) {
             univ.add(new Universe(RAND));
         }
         for (int i = 0; i < univ.size(); i++) {
-            if(univ.get(i).posY > HEIGHT)
+            if (univ.get(i).posY > HEIGHT)
                 univ.remove(i);
         }
     }
+
+
 }
+
+

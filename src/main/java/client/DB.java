@@ -1,11 +1,14 @@
 package client;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class DB {
 
     // Метод для подключения к БД
-    private Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    private static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
         String login = "system";
@@ -50,13 +53,28 @@ public class DB {
 
         String sql = "select score from Space where nickname='" + nick + "'";
         Statement statement = getDbConnection().createStatement();
-        statement.executeUpdate(sql);
+        statement.executeQuery(sql);
         ResultSet res = statement.getResultSet();
         while (res.next()) {
             sc = res.getInt("Score");
         }
 
         return sc;
+    }
+
+    public static ObservableList<Player> getAllPlayer() throws SQLException, ClassNotFoundException {
+        Connection con = getDbConnection();
+        ObservableList<Player> list = FXCollections.observableArrayList();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from Space");
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                list.add(new Player(res.getString("Nick"),Integer.parseInt(res.getString("Score"))));
+                System.out.println(list);
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 //    public void getAllScore() throws SQLException, ClassNotFoundException {
 //        String sql = "select * from Space";

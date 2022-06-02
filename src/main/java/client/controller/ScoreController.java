@@ -1,8 +1,9 @@
-package client;
+package client.controller;
 
+import client.db_thread.DB;
+import client.elements.Player;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -10,14 +11,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static javafx.scene.paint.Color.BLACK;
 
 public class ScoreController {
     public void secondWindow() throws SQLException, ClassNotFoundException {
@@ -40,9 +38,7 @@ public class ScoreController {
             TableColumn<Player, Integer> scoreColumn = new TableColumn<>("Score");
             scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
             table.getColumns().add(scoreColumn);
-
             FlowPane root = new FlowPane(60, 50, table);
-
             Scene scene = new Scene(root, 350, 200);
             Stage stage = new Stage();
             stage.setScene(scene);

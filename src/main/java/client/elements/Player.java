@@ -1,4 +1,4 @@
-package client;
+package client.elements;
 
 
 import javafx.beans.property.IntegerProperty;

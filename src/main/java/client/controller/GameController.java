@@ -1,19 +1,17 @@
-package client;
+package client.controller;
 
+import client.db_thread.DB;
+import client.elements.Bomb;
+import client.elements.Rocket;
+import client.elements.Shot;
+import client.elements.Universe;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.InputEvent;
 import javafx.scene.paint.Color;

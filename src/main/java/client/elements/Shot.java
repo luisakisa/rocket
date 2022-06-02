@@ -1,4 +1,4 @@
-package client;
+package client.elements;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -8,7 +8,9 @@ public class Shot {
     public boolean toRemove;
 
 
-    int posX, posY, speed = 10;
+    int posX;
+    public int posY;
+    int speed = 10;
     static final int size = 6;
 
     public Shot(int posX, int posY) {

@@ -1,4 +1,4 @@
-package client;
+package client.elements;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -12,8 +12,11 @@ public class Rocket {
     static final int EXPLOSION_H = 128;
     static final int EXPLOSION_STEPS = 15;
     private GraphicsContext gc;
-    int posX, posY, size;
-    boolean exploding, destroyed;
+    public int posX;
+    int posY;
+    int size;
+    public boolean exploding;
+    public boolean destroyed;
     Image img;
     int explosionStep = 0;
 

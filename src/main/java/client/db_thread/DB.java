@@ -1,14 +1,11 @@
-package client;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+package client.db_thread;
 
 import java.sql.*;
 
-public class DB {
+public class DB{
 
     // Метод для подключения к БД
-    static Connection getDbConnection() throws ClassNotFoundException, SQLException {
+    public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("oracle.jdbc.driver.OracleDriver");
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
         String login = "system";

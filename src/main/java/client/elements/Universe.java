@@ -1,4 +1,4 @@
-package client;
+package client.elements;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -6,7 +6,8 @@ import javafx.scene.paint.Color;
 import java.util.Random;
 
 public class Universe {
-    int posX, posY;
+    int posX;
+    public int posY;
     private final int h;
     private final int w;
     private final int r;

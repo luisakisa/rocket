@@ -60,13 +60,10 @@ public class GameController {
             new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\9.png"),
             new Image("D:\\programming\\rocket\\src\\main\\resources\\view\\images\\10.png"),
     };
-    MenuController menu = new MenuController();
 
     @FXML
-    public void StartGame() {
-
-        db.insertNick(menu.nick);
-
+    public void StartGame(String nick) {
+        db.insertNick(nick);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
@@ -180,14 +177,14 @@ public class GameController {
         }
         if (gameOver){
             if(checkWindow) {
-                ScoreController SC = new ScoreController();
                 try {
-                    SC.secondWindow();
+                    setScore(db);
                 } catch (SQLException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }
+                ScoreController SC = new ScoreController();
                 try {
-                    setScore(db);
+                    SC.secondWindow();
                 } catch (SQLException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }

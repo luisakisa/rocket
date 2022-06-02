@@ -25,7 +25,7 @@ public class ScoreController {
             // определяем таблицу и устанавливаем данные
             TableView<Player> table = new TableView<>(getAllPlayer());
             table.setStyle("-fx-background-color: #161c22;");
-            table.setPrefWidth(350);
+            table.setPrefWidth(400);
             table.setPrefHeight(200);
 
             // столбец для вывода имени
@@ -40,11 +40,11 @@ public class ScoreController {
             scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
             scoreColumn.setStyle("-fx-background-color: #161c22; -fx-text-fill: white;");
             nameColumn.setStyle("-fx-background-color: #161c22; -fx-text-fill: white;");
-            scoreColumn.setPrefWidth(175);
-            nameColumn.setPrefWidth(175);
+            scoreColumn.setPrefWidth(200);
+            nameColumn.setPrefWidth(182);
             table.getColumns().add(scoreColumn);
             FlowPane root = new FlowPane(60, 50, table);
-            Scene scene = new Scene(root, 350, 200);
+            Scene scene = new Scene(root, 400, 200);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.setTitle("Score");

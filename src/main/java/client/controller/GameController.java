@@ -32,6 +32,7 @@ public class GameController {
     int n =1;
 
     boolean gameOver = false;
+    boolean checkWindow = false;
 
     @FXML
     private GraphicsContext gc;
@@ -45,20 +46,19 @@ public class GameController {
     private static final Random RAND = new Random();
 
     private static final int PLAYER_SIZE = 70;//размер ракет
-    static final Image PLAYER_IMG = new Image("D:/programming/rocket/src/main/resources/view/images/player.png");
-
+    static final Image PLAYER_IMG = new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\player.png");
 
     static final Image[] BOMBS_IMG = {
-            new Image("D:/programming/rocket/src/main/resources/view/images/1.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/2.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/3.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/4.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/5.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/6.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/7.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/8.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/9.png"),
-            new Image("D:/programming/rocket/src/main/resources/view/images/10.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\1.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\2.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\3.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\4.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\5.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\6.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\7.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\8.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\9.png"),
+            new Image("C:\\Users\\Admin\\OneDrive\\Рабочий стол\\tvinky-main\\rocket\\src\\main\\resources\\view\\images\\10.png"),
     };
     MenuController menu = new MenuController();
 
@@ -112,6 +112,7 @@ public class GameController {
         player = new Rocket(WIDTH / 2, HEIGHT - 110, PLAYER_SIZE, PLAYER_IMG, gc);
         score = 0;
         IntStream.range(0, MAX_BOMBS).mapToObj(i -> this.newBomb()).forEach(Bombs::add);
+        checkWindow = true;
     }
 
     Bomb newBomb() {
@@ -130,7 +131,7 @@ public class GameController {
         if (gameOver) {
             gc.setFont(Font.font(35));
             gc.setFill(Color.WHITE);
-            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", 300, HEIGHT / 2.5);
+            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH/2, HEIGHT / 2.5);
 
         }
         univ.forEach(universe -> universe.draw(gc));
@@ -177,18 +178,20 @@ public class GameController {
             if (univ.get(i).posY > HEIGHT)
                 univ.remove(i);
         }
-        if (gameOver && n == 1){
-            ScoreController SC = new ScoreController();
-            n++;
-            try {
-                SC.secondWindow();
-            } catch (SQLException | ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
-            try {
-                setScore(db);
-            } catch (SQLException | ClassNotFoundException ex) {
-                ex.printStackTrace();
+        if (gameOver){
+            if(checkWindow) {
+                ScoreController SC = new ScoreController();
+                try {
+                    SC.secondWindow();
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                try {
+                    setScore(db);
+                } catch (SQLException | ClassNotFoundException ex) {
+                    ex.printStackTrace();
+                }
+                checkWindow = false;
             }
         }
     }

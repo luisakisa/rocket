@@ -24,6 +24,7 @@ public class ScoreController {
              fxmlLoader.setLocation(getClass().getResource("/Score.fxml"));
             // определяем таблицу и устанавливаем данные
             TableView<Player> table = new TableView<>(getAllPlayer());
+            table.setStyle("-fx-background-color: #161c22;");
             table.setPrefWidth(350);
             table.setPrefHeight(200);
 

@@ -9,8 +9,8 @@ module main {
     exports client;
     exports client.controller;
     opens client.controller to javafx.fxml;
-    exports client.db_thread;
-    opens client.db_thread to javafx.fxml;
+    exports client.net;
+    opens client.net to javafx.fxml;
     exports client.elements;
     opens client.elements to javafx.fxml;
 }

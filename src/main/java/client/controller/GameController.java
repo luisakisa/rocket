@@ -1,6 +1,6 @@
 package client.controller;
 
-import client.db_thread.DB;
+import client.net.Net;
 import client.elements.Bomb;
 import client.elements.Rocket;
 import client.elements.Shot;
@@ -28,7 +28,7 @@ import java.util.stream.IntStream;
 public class GameController {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
-    DB db = new DB();
+    Net net = new Net();
     int n =1;
 
     boolean gameOver = false;
@@ -62,8 +62,8 @@ public class GameController {
     };
 
     @FXML
-    public void StartGame(String nick) {
-        db.insertNick(nick);
+    public void StartGame(String nick) throws IOException {
+        net.insertNick(nick);
         Canvas canvas = new Canvas(WIDTH, HEIGHT);
         gc = canvas.getGraphicsContext2D();
 
@@ -98,8 +98,8 @@ public class GameController {
 
     }
 
-    public void setScore(DB db) throws SQLException, ClassNotFoundException {
-        db.insertScore(score);
+    public void setScore() throws SQLException, ClassNotFoundException, IOException {
+        net.insertScore(score);
     }
 
     private void setup() {
@@ -178,11 +178,11 @@ public class GameController {
         if (gameOver){
             if(checkWindow) {
                 try {
-                    setScore(db);
+                    setScore();
                 } catch (SQLException | ClassNotFoundException ex) {
                     ex.printStackTrace();
                 }
-                ScoreController SC = new ScoreController();
+                ScoreController SC = new ScoreController(net);
                 try {
                     SC.secondWindow();
                 } catch (SQLException | ClassNotFoundException ex) {

@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.InputEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 
 public class MenuController {
 
@@ -15,7 +17,7 @@ public class MenuController {
     public TextField nickname;
 
     @FXML
-    public void initialize(InputEvent a) {
+    public void initialize(InputEvent a) throws IOException {
         final Node source = (Node) a.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();

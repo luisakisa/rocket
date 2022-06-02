@@ -1,8 +1,11 @@
-package client.db_thread;
+package com.company;
+
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class DB{
+    String nick;
 
     // Метод для подключения к БД
     public static Connection getDbConnection() throws ClassNotFoundException, SQLException {
@@ -15,20 +18,13 @@ public class DB{
         System.out.println("OK");
         return con;
     }
-    String nick;
 //     Метод для добавления новых рекордов внуть таблицы
     public void insertNick(String nick) {
        this.nick = nick;
-
-    }
-    public void deleteScore() throws SQLException, ClassNotFoundException {
-        String sql =  "delete from space where nickname = '" + nick +"'";
-        Statement statement = getDbConnection().createStatement();
-        statement.executeUpdate(sql);
-
     }
     String nc = "name";
-    public void insertScore(int score) throws SQLException, ClassNotFoundException {
+    public void insertScore(int score) {
+        try {
         Statement statement = getDbConnection().createStatement();
         String sql = "select nickname from space where nickname = '" + nick + "'";
         statement.executeUpdate(sql);
@@ -44,6 +40,9 @@ public class DB{
             sql = "UPDATE space  SET score = " + score + "WHERE nickname = '"+nick+ "'";
             statement.executeUpdate(sql);
         }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     int sc;
     public int getPrevScore() throws SQLException, ClassNotFoundException {
@@ -58,17 +57,18 @@ public class DB{
 
         return sc;
     }
-
-
-//    public void getAllScore() throws SQLException, ClassNotFoundException {
-//        String sql = "select * from Space";
-//        Statement statement = getDbConnection().createStatement();
-//        statement.executeUpdate(sql);
-//        ResultSet res = statement.getResultSet();
-//        ScoreController sc = new ScoreController();
-//        while (res.next()) {
-//           sc.res.getInt("Score");
-//        }
-//    }
+    public  HashMap<String, Integer> getAllPlayer(){
+    HashMap map = new HashMap<String, Integer>();
+        try {
+            Connection conn = getDbConnection();
+            PreparedStatement ps = conn.prepareStatement("select * from Space");
+            ResultSet res = ps.executeQuery();
+            while (res.next()){
+                map.put(res.getString("Nickname"),Integer.parseInt(res.getString("Score")));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return map;}
 
 }

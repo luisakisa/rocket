@@ -11,9 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.InputEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
@@ -132,7 +130,7 @@ public class GameController {
         if (gameOver) {
             gc.setFont(Font.font(35));
             gc.setFill(Color.WHITE);
-            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", WIDTH / 2, HEIGHT / 2.5);
+            gc.fillText("Game Over \n Your Score is: " + score + " \n Click to play again", 300, HEIGHT / 2.5);
 
         }
         univ.forEach(universe -> universe.draw(gc));

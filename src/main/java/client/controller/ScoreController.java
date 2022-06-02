@@ -38,6 +38,8 @@ public class ScoreController {
             // столбец для вывода возраста
             TableColumn<Player, Integer> scoreColumn = new TableColumn<>("Score");
             scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
+            scoreColumn.setStyle("-fx-background-color: #161c22; fx-text-fill: white;");
+            nameColumn.setStyle("-fx-background-color: #161c22; fx-text-fill: white;");
             scoreColumn.setPrefWidth(175);
             nameColumn.setPrefWidth(175);
             table.getColumns().add(scoreColumn);

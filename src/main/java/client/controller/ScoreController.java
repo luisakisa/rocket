@@ -55,7 +55,7 @@ public class ScoreController {
         ObservableList<Player> list = FXCollections.observableArrayList();
         try {
             Connection conn = DB.getDbConnection();
-            PreparedStatement ps = conn.prepareStatement("select * from Space");
+            PreparedStatement ps = conn.prepareStatement("select * from Space order by Score");
             ResultSet res = ps.executeQuery();
             while (res.next()){
                 list.add(new Player(res.getString("Nickname"),Integer.parseInt(res.getString("Score"))));
